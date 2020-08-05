@@ -40,3 +40,26 @@ mydata <- cbind(ID, Y, X)
 
 finaldata <- mydata %>% select(ID, code, contains("mean"), contains("std"))
 #Check selection using View(finaldata ;)
+#Change code for activity label to use descriptive activity names. 
+finaldata$code <- activity_label[finaldata$code, 2]
+
+#Set appropriately labels the data set with descriptive variable names.
+names(finaldata) <- gsub("code", "Activity", names(finaldata))
+names(finaldata)<-gsub("Acc", "Accelerometer", names(finaldata))
+names(finaldata)<-gsub("Gyro", "Gyroscope", names(finaldata))
+names(finaldata)<-gsub("BodyBody", "Body", names(finaldata))
+names(finaldata)<-gsub("Mag", "Magnitude", names(finaldata))
+names(finaldata)<-gsub("^t", "Time", names(finaldata))
+names(finaldata)<-gsub("^f", "Frequency", names(finaldata))
+names(finaldata)<-gsub("tBody", "TimeBody", names(finaldata))
+names(finaldata)<-gsub("-mean()", "Mean", names(finaldata), ignore.case = TRUE)
+names(finaldata)<-gsub("-std()", "STD", names(finaldata), ignore.case = TRUE)
+names(finaldata)<-gsub("-freq()", "Frequency", names(finaldata), ignore.case = TRUE)
+names(finaldata)<-gsub("angle", "Angle", names(finaldata))
+names(finaldata)<-gsub("gravity", "Gravity", names(finaldata))
+
+#Creatting an independent tidy data set with the average of each variable
+#for each activity and each subject.
+AverageData<- finaldata %>% group_by(ID, Activity) %>%
+summarise_all(funs(mean))
+write.table(AverageData, "AverageData.txt", row.name=FALSE)
