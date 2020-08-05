@@ -1,0 +1,33 @@
+# Code Book
+## Introduction
+* This project will use six variables from UCI HAR Dataset. On the right side its name once they're converted.
+x_train.txt <- x_train
+x_test.txt <- x_test
+y_train.txt <- y_train
+y_test.txt <- y_test
+subject_train.txt <- ID_train
+subject_test.txt <- ID_test
+* The features.txt contains the correct variable name from x_train.txt and x_test.txt. More info about them in features_info.txt.
+* The activity_labels.txt contains the desciptive names for each activity label and their code. 
+
+## Merged data
+X variable contains x_train and x_test
+Y variable contains y_train and y_test
+ID contains ID_train and ID_test
+With these 3 variables a data frame it's been created. It's been selected just mean and std measurement in it. 
+5th step, wich involve to take the average from each subject and each activity, it was used this data frame. 
+
+##Final labels (reanmming list). 
+* Code column <-  activities
+* Acc in column’s name replaced by Accelerometer
+* Gyro in column’s name replaced by Gyroscope
+* BodyBody in column’s name replaced by Body
+* Mag in column’s name replaced by Magnitude
+* start with character f <- Frequency
+* start with character t <- Time
+tBody <- TimeBody
+* end in "-mean" <- Mean
+* end in "-std()" <- STD
+* end in "-freq()" <- Frequency
+* angle <- Angle)
+* gravity <- Gravity
